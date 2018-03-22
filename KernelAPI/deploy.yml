@@ -11,11 +11,11 @@ spec:
     spec:
       containers:
       - name: kernelapi
-        image: ufabacr.azurecr.io/kernelapi
+        image: ipsacr.azurecr.io/kernelapi
         ports:
         - containerPort: 80
       imagePullSecrets:
-      - name: ufabSecret
+      - name: ipsSecret
       
        
 ---

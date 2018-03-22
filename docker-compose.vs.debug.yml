@@ -7,8 +7,8 @@ services:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - C:\WorkRepos\uFab\Poc\NetCoreAndCppDemo\CppLibLinux\bin\x64\Debug:/nativelib
-      - C:\WorkRepos\uFab\Poc\NetCoreAndCppDemo\KernelAPI:/app
+      - C:\WorkRepos\..\Poc\NetCoreAndCppDemo\CppLibLinux\bin\x64\Debug:/nativelib
+      - C:\WorkRepos\..\Poc\NetCoreAndCppDemo\KernelAPI:/app
       - C:\Users\vduynguyenle\vsdbg\vs2017u5:/remote_debugger:ro
       - C:\Users\vduynguyenle\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
@@ -24,8 +24,8 @@ services:
     environment:
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - C:\WorkRepos\uFab\Poc\NetCoreAndCppDemo\CppLibLinux\bin\x64\Debug:/nativelib
-      - C:\WorkRepos\uFab\Poc\NetCoreAndCppDemo\NetCoreWin:/app
+      - C:\WorkRepos\..\Poc\NetCoreAndCppDemo\CppLibLinux\bin\x64\Debug:/nativelib
+      - C:\WorkRepos\..\Poc\NetCoreAndCppDemo\NetCoreWin:/app
       - C:\Users\vduynguyenle\vsdbg\vs2017u5:/remote_debugger:ro
       - C:\Users\vduynguyenle\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
