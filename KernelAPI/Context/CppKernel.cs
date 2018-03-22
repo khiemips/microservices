@@ -3,10 +3,10 @@ using System.Runtime.InteropServices;
 
 namespace KernelAPI.Context
 {
-    public class CppKernel : IDisposable
+    public class CppKernel : IDisposable, ICppKernel
     {
 #if DEBUG
-        const string nativeLib = @"/nativelib/libCppLibLinux";
+        const string nativeLib = @"./nativelib/libCppLibLinux";
 #else
         const string nativeLib = "libCppLibLinux";
 #endif

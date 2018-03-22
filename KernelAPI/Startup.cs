@@ -1,4 +1,5 @@
-﻿using KernelAPI.Services;
+﻿using KernelAPI.Context;
+using KernelAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,29 +24,14 @@ namespace KernelAPI
 
             if (Configuration["Storage"].ToLower() == "blob")
             {
-                if (Configuration["AzureBlob:ConnectionString"] != null)
-                {
-                    services.AddTransient<IStorageService, AzureStorageService>(implement =>
-                    {
-                        return new AzureStorageService(Configuration["AzureBlob:ConnectionString"]);
-                    });
-                }
-                else if(Configuration["AzureBlob:AccountName"] != null && Configuration["AzureBlob:KeyValue"] != null)
-                {
-                    services.AddTransient<IStorageService, AzureStorageService>(implement =>
-                    {
-                        return new AzureStorageService(Configuration["AzureBlob:AccountName"], Configuration["AzureBlob:KeyValue"]);
-                    });
-                }
+                services.AddTransient<IStorageService, AzureStorageService>(implement => new AzureStorageService(Configuration["AzureBlob:ConnectionString"]));
             }
             else
             {
-                services.AddTransient<IStorageService, AzureRedisService>(implement =>
-                {
-                    return new AzureRedisService(Configuration["AzureRedis:ConnectionString"]);
-                });
+                services.AddTransient<IStorageService, AzureRedisService>(implement => new AzureRedisService(Configuration["AzureRedis:ConnectionString"]));
             }
-            
+
+            services.AddTransient<ICppKernelFactory, CppKernelFactory>();            
             services.AddSession();
 
         }

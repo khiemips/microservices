@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace KernelAPI
 {
@@ -32,8 +33,10 @@ namespace KernelAPI
         public void Write(string blobId, byte[] buffer, int size)
         {
             var writeModel = _writeModels[blobId];
-            var streamWriter = new BinaryWriter(writeModel.Stream);
-            streamWriter.Write(buffer, 0, size);
+            using (var streamWriter = new BinaryWriter(writeModel.Stream, new UTF8Encoding(false, true), true))
+            {
+                streamWriter.Write(buffer, 0, size);
+            }
         }
 
         public void CloseWrite(string blobId)

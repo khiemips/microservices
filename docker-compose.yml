@@ -1,12 +1,6 @@
 version: '3'
 
 services:
-  netcorewin:
-    image: netcorewin
-    build:
-      context: .
-      dockerfile: NetCoreWin/Dockerfile
-
   kernelapi:
     image: kernelapi
     build:

@@ -31,7 +31,7 @@ namespace KernelAPI
         {
             var readCount = 0;
             var model = _readModels[blobId];
-            using (var binaryReader = new BinaryReader(model.Stream, Encoding.UTF8, leaveOpen: true))
+            using (var binaryReader = new BinaryReader(model.Stream, new UTF8Encoding(false, true), leaveOpen: true))
             {
                 model.Stream.Position = model.CurrentPosition;
                 readCount = binaryReader.Read(buffer, index: 0, count: size);

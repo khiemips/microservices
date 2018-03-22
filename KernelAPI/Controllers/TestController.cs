@@ -2,8 +2,6 @@
 using KernelAPI.Context;
 using KernelAPI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 
@@ -14,22 +12,18 @@ namespace KernelAPI.Controllers
     [GeneralExceptionFilter]
     public class TestController : Controller
     {
-        private IConfiguration _config;
-        private ILogger _logger;
-        private IStorageService _storageService;
+        private readonly IStorageService _storageService;
+        private readonly ICppKernelFactory _cppKernelFactory;
 
-        public TestController(IStorageService storageService, IConfiguration config, ILogger<TestController> logger)
+        public TestController(IStorageService storageService, ICppKernelFactory cppKernelFactory)
         {
             _storageService = storageService;
-            _config = config;
-            _logger = logger;
+            _cppKernelFactory = cppKernelFactory;
         }
 
         [HttpGet]
         public IActionResult StartValidation()
         {
-            _logger.LogDebug("Hello from c#");
-
             // We'll need to define this later;
             var blobContainer = "username";
             var blobFolder = $"sessions/{Guid.NewGuid()}";
@@ -50,13 +44,12 @@ namespace KernelAPI.Controllers
                 LogDebug = Console.WriteLine
             };
 
-
-            using (var kernel = new CppKernel(kernelContext))
+            using (var kernel = _cppKernelFactory.Create(kernelContext))
             {
                 kernel.StartValidation();
             }
 
-            return Ok(new { blobContainer, HttpContext.Session.Id, blobFolder });
+            return Ok(new { blobContainer, blobFolder });
         }
 
         [HttpPost]
@@ -68,8 +61,8 @@ namespace KernelAPI.Controllers
 
             reader.OpenRead(blobId);
 
+            // This is to be configurable
             var chunk = new byte[10240];
-
             var stream = new MemoryStream();
 
             while (reader.Read(blobId, chunk, chunk.Length) > 0)
@@ -79,8 +72,6 @@ namespace KernelAPI.Controllers
 
             stream.Seek(0, SeekOrigin.Begin);
             return File(stream, "application/octet-stream");
-
-
         }
 
     }
