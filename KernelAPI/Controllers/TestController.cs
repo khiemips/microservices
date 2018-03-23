@@ -50,7 +50,7 @@ namespace KernelAPI.Controllers
 
                 LogDebug = Console.WriteLine
             };
-
+             
             using (var kernel = _cppKernelFactory.Create(kernelContext))
             {
                 kernel.StartValidation();
