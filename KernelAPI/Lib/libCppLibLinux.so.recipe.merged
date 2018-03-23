@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <LocalLibPath>C:\Repos\ufab\Poc\NetCoreAndCppDemo\CppLibLinux\bin\x64\Debug\libCppLibLinux.so</LocalLibPath>
+  <ObjPaths>C:\Repos\ufab\Poc\NetCoreAndCppDemo\CppLibLinux\obj\x64\Debug\</ObjPaths>
+  <Configuration>Debug</Configuration>
+  <Platform>x64</Platform>
+</Project>

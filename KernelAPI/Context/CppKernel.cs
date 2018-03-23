@@ -6,7 +6,7 @@ namespace KernelAPI.Context
     public class CppKernel : IDisposable, ICppKernel
     {
 #if DEBUG
-        const string nativeLib = @"./nativelib/libCppLibLinux";
+        const string nativeLib = @"./Lib/libCppLibLinux";
 #else
         const string nativeLib = "libCppLibLinux";
 #endif

@@ -17,16 +17,21 @@ namespace KernelAPI
             BuildWebHost(args).Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .ConfigureLogging((context, logging) =>
-                {
-                    logging.AddConfiguration(context.Configuration.GetSection("Logging"));
-                    logging.AddDebug();
-                    logging.AddConsole();
-                    
-                })
-                .Build();
+        public static IWebHost BuildWebHost(string[] args) => WebHost.CreateDefaultBuilder(args)
+                            .UseStartup<Startup>()
+                            .ConfigureLogging((context, logging) =>
+                            {
+                                logging.AddConfiguration(context.Configuration.GetSection("Logging"));
+                                logging.AddDebug();
+                                logging.AddConsole();
+                            })
+                            .ConfigureAppConfiguration((context, config) =>
+                            {
+                                var env = context.HostingEnvironment;
+                                config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                                      .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                                config.AddEnvironmentVariables();
+                            })
+                            .Build();
     }
 }

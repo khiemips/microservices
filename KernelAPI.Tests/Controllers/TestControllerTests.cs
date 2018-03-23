@@ -2,6 +2,7 @@
 using KernelAPI.Controllers;
 using KernelAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -17,6 +18,7 @@ namespace KernelAPI.Tests.Controllers
             var _mockStorageService = new Mock<IStorageService>();
             var _mockCppKernelFactory = new Mock<ICppKernelFactory>();
             var _mockCppKernel = new Mock<ICppKernel>();
+            var _mockConfig = new Mock<IConfiguration>();
 
             _mockCppKernelFactory
                 .Setup(x => x.Create(It.IsAny<KernelContext>()))
@@ -26,7 +28,7 @@ namespace KernelAPI.Tests.Controllers
                 .Setup(x => x.StartValidation())
                 .Verifiable();
 
-            var controller = new TestController(_mockStorageService.Object, _mockCppKernelFactory.Object);
+            var controller = new TestController(_mockStorageService.Object, _mockCppKernelFactory.Object, _mockConfig.Object);
             var result = controller.StartValidation();
 
             Assert.IsInstanceOfType(result, typeof(OkObjectResult));
@@ -39,12 +41,13 @@ namespace KernelAPI.Tests.Controllers
             var _mockStorageService = new Mock<IStorageService>();
             var _mockCppKernelFactory = new Mock<ICppKernelFactory>();
             var _mockCppKernel = new Mock<ICppKernel>();
+            var _mockConfig = new Mock<IConfiguration>();
 
             _mockCppKernelFactory
                 .Setup(x => x.Create(It.IsAny<KernelContext>()))
                 .Returns<ICppKernel>(null);
 
-            var controller = new TestController(_mockStorageService.Object, _mockCppKernelFactory.Object);
+            var controller = new TestController(_mockStorageService.Object, _mockCppKernelFactory.Object, _mockConfig.Object);
             var result = controller.StartValidation();
         }
     }

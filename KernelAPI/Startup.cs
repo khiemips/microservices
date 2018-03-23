@@ -24,11 +24,11 @@ namespace KernelAPI
 
             if (Configuration["Storage"].ToLower() == "blob")
             {
-                services.AddTransient<IStorageService, AzureStorageService>(implement => new AzureStorageService(Configuration["AzureBlob:ConnectionString"]));
+                services.AddTransient<IStorageService, AzureStorageService>(implement => new AzureStorageService(Configuration["BlobStorage:ConnectionString"]));
             }
             else
             {
-                services.AddTransient<IStorageService, AzureRedisService>(implement => new AzureRedisService(Configuration["AzureRedis:ConnectionString"]));
+                services.AddTransient<IStorageService, AzureRedisService>(implement => new AzureRedisService(Configuration["RedisStorage:ConnectionString"]));
             }
 
             services.AddTransient<ICppKernelFactory, CppKernelFactory>();            

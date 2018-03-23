@@ -9,7 +9,7 @@ namespace NetCoreWin
     class Program
     {
 #if DEBUG
-        const string nativeLib = @"/nativelib/libCppLibLinux";
+        const string nativeLib = @"./Lib/libCppLibLinux";
 #else
         const string nativeLib = "libCppLibLinux";
 #endif

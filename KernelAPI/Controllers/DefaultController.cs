@@ -1,4 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.WindowsAzure.Storage;
+using ServiceStack.Redis;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace KernelAPI.Controllers
@@ -7,10 +13,12 @@ namespace KernelAPI.Controllers
     [Route("")]
     public class DefaultController : Controller
     {
+        
         [HttpGet]
-        public IActionResult Get()
+        public string Get()
         {
-            return Ok(Directory.GetCurrentDirectory());
+            return "Hello KernelApi!";
         }
+       
     }
 }

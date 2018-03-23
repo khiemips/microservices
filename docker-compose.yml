@@ -6,4 +6,18 @@ services:
     build:
       context: .
       dockerfile: KernelAPI/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
 
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  blob:
+    image: arafato/azurite
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+    environment:
+      executable: "blob"

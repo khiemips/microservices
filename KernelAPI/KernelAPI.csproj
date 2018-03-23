@@ -60,7 +60,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="DfmCheckerMock\blob.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="DfmCheckerMock\stl.stl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Lib\libCppLibLinux.so">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
