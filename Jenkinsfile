@@ -11,5 +11,15 @@ pipeline {
         build 'KernelApi/Test KernelApi'
       }
     }
+    stage('Package') {
+      steps {
+        build 'Package KernelApi'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        build 'Deploy KernelApi'
+      }
+    }
   }
 }
