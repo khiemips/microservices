@@ -13,12 +13,12 @@ pipeline {
     }
     stage('Package') {
       steps {
-        build 'Package KernelApi'
+        build 'KernelApi/Package KernelApi'
       }
     }
     stage('Deploy') {
       steps {
-        build 'Deploy KernelApi'
+        build 'KernelApi/Deploy KernelApi'
       }
     }
   }
