@@ -17,7 +17,7 @@ namespace KernelAPI.Controllers
         [HttpGet]
         public string Get()
         {
-            return "Hello KernelApi! 1st update. 2nd build test";
+            return "Hello KernelApi! 3rd update";
         }
        
     }
