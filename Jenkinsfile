@@ -23,6 +23,7 @@ sudo dotnet build KernelAPI'''
         sh '''docker login parkenipsbuildhub.azurecr.io -u parkenipsbuildhub -p D2DIg5NBkL7sLaNzrptPjby8gAaT/BMh
 docker tag kernelapi parkenipsbuildhub.azurecr.io/kernelapi
 docker push parkenipsbuildhub.azurecr.io/kernelapi'''
+        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, cleanupMatrixParent: true)
       }
     }
   }
