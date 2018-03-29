@@ -1,13 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Fetch') {
-      steps {
-        git(url: 'https://github.com/khiemips/microservices.git', branch: 'master')
-      }
-    }
     stage('Build') {
       steps {
+        git(url: 'https://github.com/khiemips/microservices.git', branch: 'master')
         sh '''sudo dotnet restore KernelAPI
 sudo dotnet build KernelAPI'''
       }
