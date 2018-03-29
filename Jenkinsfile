@@ -1,24 +1,32 @@
 pipeline {
   agent any
   stages {
+    stage('Fetch') {
+      steps {
+        git(url: 'https://github.com/khiemips/microservices.git', branch: 'master')
+      }
+    }
     stage('Build') {
       steps {
-        build 'KernelApi/Build KernelApi'
+        sh '''sudo dotnet restore KernelAPI
+sudo dotnet build KernelAPI'''
       }
     }
     stage('Test') {
       steps {
-        build 'KernelApi/Test KernelApi'
+        sh 'sudo dotnet test KernelAPI.Tests'
       }
     }
     stage('Package') {
       steps {
-        build 'KernelApi/Package KernelApi'
+        sh 'docker-compose -f "./docker-compose.yml" -f "./docker-compose.override.yml" --no-ansi build --force-rm --no-cache'
       }
     }
     stage('Deploy') {
       steps {
-        build 'KernelApi/Deploy KernelApi'
+        sh '''docker login parkenipsbuildhub.azurecr.io -u parkenipsbuildhub -p D2DIg5NBkL7sLaNzrptPjby8gAaT/BMh
+docker tag kernelapi parkenipsbuildhub.azurecr.io/kernelapi
+docker push parkenipsbuildhub.azurecr.io/kernelapi'''
       }
     }
   }
