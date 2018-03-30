@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace KernelAPI.Services
+namespace ExplicitKernelContext.Redis
 {
     public class AzureRedisService : IStorageService
     {
@@ -11,8 +11,8 @@ namespace KernelAPI.Services
         public AzureRedisService(string connectionString)
         {
             _redis = new RedisManagerPool(connectionString).GetClient();
-        }     
-        
+        }
+
         public Task<BlobModel> OpenReadBlobAsync(string blobContainer, string blobName)
         {
             var blockBlob = _redis.Get<byte[]>(blobName);

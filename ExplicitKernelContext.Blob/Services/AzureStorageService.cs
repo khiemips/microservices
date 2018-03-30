@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.Storage.Auth;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace KernelAPI.Services
+namespace ExplicitKernelContext.Blob
 {
     public class AzureStorageService : IStorageService
     {
@@ -25,7 +25,7 @@ namespace KernelAPI.Services
                 .CreateCloudBlobClient()
                 .GetContainerReference(blobContainer);
 
-           await container.CreateIfNotExistsAsync();
+            await container.CreateIfNotExistsAsync();
 
             var blockBlob = container.GetBlockBlobReference(blobName: blobName);
 
@@ -52,7 +52,7 @@ namespace KernelAPI.Services
                 Stream = await blockBlob.OpenReadAsync(),
                 CurrentPosition = 0
             };
-            
+
             return blobReadModel;
         }
 

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace KernelAPI.Services
+namespace ExplicitKernelContext
 {
     public interface IStorageService
     {

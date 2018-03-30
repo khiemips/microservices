@@ -1,10 +1,9 @@
-﻿using KernelAPI.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace KernelAPI
+namespace ExplicitKernelContext
 {
     public class ContextReader : IDisposable
     {

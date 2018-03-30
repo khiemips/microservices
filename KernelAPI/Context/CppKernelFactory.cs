@@ -1,4 +1,6 @@
-﻿namespace KernelAPI.Context
+﻿using ExplicitKernelContext;
+
+namespace KernelAPI.Context
 {
     public class CppKernelFactory : ICppKernelFactory
     {
@@ -7,7 +9,4 @@
             return new CppKernel(context);
         }
     }
-
 }
-
-

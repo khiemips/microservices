@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace KernelAPI
+namespace ExplicitKernelContext
 {
     public class BlobModel
     {
