@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: kernelapi
-        image: ufabtestregistry.azurecr.io/kernelapi
+        image: ufabtestregistry.azurecr.io/kernelapi:latest
         ports:
         - containerPort: 80       
 # ---
