@@ -11,17 +11,6 @@ spec:
     spec:
       containers:
       - name: kernelapi
-        image: ufabtestregistry.azurecr.io/kernelapi:latest
+        image: ufabtestregistry.azurecr.io/kernelapi
         ports:
-        - containerPort: 80       
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: kernelapi-service
-# spec:
-#   type: LoadBalancer
-#   ports:
-#   - port: 80
-#   selector:
-#     app: kernelapi
+        - containerPort: 80
