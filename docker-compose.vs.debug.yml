@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  kernelapi:
+    image: kernelapi:dev
+    volumes:
+      - .\CppLibLinux\bin\x64\Debug:/nativelib
+
+  #netcorewin:
+    #image: netcorewin:dev
+    #volumes:
+      #- .\CppLibLinux\bin\x64\Debug:/nativelib
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  blob:
+    image: arafato/azurite
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+    environment:
+      executable: "blob"
