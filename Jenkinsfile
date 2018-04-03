@@ -9,7 +9,7 @@ pipeline {
     stage('Test') {
       steps {
         sh '''dotnet build KernelAPI.Tests
-              dotnet test KernelAPI.Tests'''
+              dotnet test KernelAPI.Tests --logger "trx;logfilename=report.xml"'''
       }
     }
     stage('Package') {
@@ -45,6 +45,11 @@ pipeline {
                   configFilePaths: "${APP_YAML}, ${APP_SVC_YAML}", 
                   sshCredentialsId: 'aks-ssh')
       }
+    }
+  }
+  post {
+    always {
+      step([$class: 'MSTestPublisher', testResultsFile:"KernelAPI.Tests/TestResults/*.xml", failOnError: true, keepLongStdio: true])
     }
   }
   environment {
